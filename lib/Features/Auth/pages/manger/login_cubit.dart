@@ -18,23 +18,29 @@ class LoginCubit extends Cubit<LoginStaes> {
     emit(ChangePassword());
   }
 
-  void createUser({
+  Future<void> createUser({
     required String email,
     required String password,
     required String phone,
     required String name,
-  }) {
+  }) async {
+    emit(LoadingRegisterUser());
+    print("$email $password $phone $name");
+
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
+      print(value.user!.uid);
       createNewUserInFireStor(
           email: email,
           name: name,
           password: password,
           phone: phone,
           Uid: value.user!.uid);
+      emit(SuccRegisterUser());
     }).catchError((onError) {
       print(onError);
+      emit(eroorRegisterUser());
     });
   }
 }
@@ -50,7 +56,7 @@ void createNewUserInFireStor(
   FirebaseFirestore.instance
       .collection('users')
       .doc(Uid)
-      .set(model.TOMap())
+      .set(model.tOMap())
       .then((value) {
     print("Don In cloud");
   });

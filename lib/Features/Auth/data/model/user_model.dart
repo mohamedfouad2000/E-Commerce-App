@@ -1,9 +1,9 @@
 class UserModel {
-  String? name;
-  String? Uid;
-  String? email;
-  String? password;
-  String? phone;
+  dynamic name;
+  dynamic Uid;
+  dynamic email;
+  dynamic password;
+  dynamic phone;
   UserModel(
       {required this.email,
       required this.name,
@@ -19,7 +19,7 @@ class UserModel {
     Uid = json['Uid'];
   }
 
-  Map<String, dynamic> TOMap() {
+  Map<String, dynamic> tOMap() {
     return {
       'name': name,
       'email': email,

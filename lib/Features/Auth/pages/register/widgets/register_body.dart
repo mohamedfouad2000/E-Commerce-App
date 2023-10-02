@@ -41,6 +41,14 @@ class RegisterBody extends StatelessWidget {
             height: 10,
           ),
           customTextFormedFiled(
+              controller: emailCont,
+              hintText: "email",
+              type: TextInputType.emailAddress,
+              preicon: Icons.email_outlined),
+          const SizedBox(
+            height: 10,
+          ),
+          customTextFormedFiled(
               controller: passCont,
               hintText: "password",
               type: TextInputType.text,
@@ -54,14 +62,6 @@ class RegisterBody extends StatelessWidget {
             height: 10,
           ),
           customTextFormedFiled(
-              controller: emailCont,
-              hintText: "email",
-              type: TextInputType.emailAddress,
-              preicon: Icons.email_outlined),
-          const SizedBox(
-            height: 10,
-          ),
-          customTextFormedFiled(
               controller: mobileCont,
               hintText: "phone",
               type: TextInputType.number,
@@ -69,7 +69,15 @@ class RegisterBody extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          defaultButton(fun: () {}, text: "Register"),
+          defaultButton(
+              fun: () {
+                LoginCubit.get(context).createUser(
+                    email: emailCont.text,
+                    password: passCont.text,
+                    name: nameCont.text,
+                    phone: mobileCont.text);
+              },
+              text: "Register"),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

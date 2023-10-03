@@ -2,6 +2,7 @@
 import 'package:ecommers/Features/Auth/pages/login/presentation/widgets/login_view_body.dart';
 import 'package:ecommers/Features/Auth/pages/manger/login_cubit.dart';
 import 'package:ecommers/Features/Auth/pages/manger/login_states.dart';
+import 'package:ecommers/Features/admin/pages/adminhome/presentation/admin_home.dart';
 import 'package:ecommers/Features/home/presentation/home.dart';
 import 'package:ecommers/core/constans/const.dart';
 import 'package:ecommers/core/utils/components.dart';
@@ -27,7 +28,11 @@ class Login extends StatelessWidget {
         listener: (BuildContext context, Object? state) {
           if (state is SuccLoginUser) {
             UID = state.Uid;
-            Nav(context, const HomeView());
+            if (state.isAdmin) {
+              Nav(context, const AdminHome());
+            } else {
+              Nav(context, const HomeView());
+            }
           } else if (state is eroorLoginUser) {
             showToast(msg: eroorLoginUser, n: SelectToast.eroor);
           }

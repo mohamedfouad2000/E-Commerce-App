@@ -41,7 +41,7 @@ Widget customTextFiled(
 Widget customTextFormedFiled({
   required controller,
   TextInputType type = TextInputType.name,
-  required IconData preicon,
+  IconData? preicon,
   bool obscureText = false,
   String val = "",
   var sufficon,

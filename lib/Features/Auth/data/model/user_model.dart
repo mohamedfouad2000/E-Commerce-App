@@ -4,12 +4,14 @@ class UserModel {
   dynamic email;
   dynamic password;
   dynamic phone;
+  bool? isAdmin;
   UserModel(
       {required this.email,
       required this.name,
       required this.password,
       required this.phone,
-      required this.Uid});
+      required this.Uid,
+      required this.isAdmin});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];
@@ -17,6 +19,7 @@ class UserModel {
     password = json['password'];
     phone = json['phone'];
     Uid = json['Uid'];
+    isAdmin = json['isAdmin'];
   }
 
   Map<String, dynamic> tOMap() {
@@ -26,6 +29,7 @@ class UserModel {
       'password': password,
       'phone': phone,
       'Uid': Uid,
+      'isAdmin': isAdmin,
     };
   }
 }

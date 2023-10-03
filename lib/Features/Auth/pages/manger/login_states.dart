@@ -20,7 +20,8 @@ class LoadingLoginUser extends LoginStaes {}
 
 class SuccLoginUser extends LoginStaes {
   String Uid;
-  SuccLoginUser({required this.Uid});
+  bool isAdmin;
+  SuccLoginUser({required this.Uid, required this.isAdmin});
 }
 
 class eroorLoginUser extends LoginStaes {

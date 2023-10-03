@@ -1,6 +1,6 @@
-import 'package:ecommers/Features/admin/presentation/manger/admin_cubit.dart';
-import 'package:ecommers/Features/admin/presentation/manger/admin_states.dart';
-import 'package:ecommers/Features/admin/presentation/widgets/admin_home_body.dart';
+import 'package:ecommers/Features/admin/pages/adminhome/presentation/manger/admin_cubit.dart';
+import 'package:ecommers/Features/admin/pages/adminhome/presentation/manger/admin_states.dart';
+import 'package:ecommers/Features/admin/pages/adminhome/presentation/widgets/admin_home_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,8 +15,12 @@ class AdminHome extends StatelessWidget {
       },
       child: BlocConsumer<AdminCubit, AdminStates>(
         builder: (BuildContext context, state) {
-          return const Scaffold(
-            body: AdminHomeBody(),
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text("Admin Home"),
+              centerTitle: true,
+            ),
+            body: const AdminHomeBody(),
           );
         },
         listener: (BuildContext context, Object? state) {},

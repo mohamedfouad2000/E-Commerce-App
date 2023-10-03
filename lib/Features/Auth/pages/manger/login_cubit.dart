@@ -53,7 +53,13 @@ class LoginCubit extends Cubit<LoginStaes> {
       required String Uid}) {
     print("object");
     UserModel? model = UserModel(
-        email: email, name: name, password: password, phone: phone, Uid: Uid);
+      email: email,
+      name: name,
+      password: password,
+      phone: phone,
+      Uid: Uid,
+      isAdmin: false,
+    );
     FirebaseFirestore.instance
         .collection('users')
         .doc(Uid)
@@ -71,12 +77,19 @@ class LoginCubit extends Cubit<LoginStaes> {
     required String email,
     required String password,
   }) {
+    bool? isAdmin = false;
     emit(LoadingLoginUser());
     {}
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      emit(SuccLoginUser(Uid: value.user!.uid));
+      if (email == "admin@yahoo.com" && password == "1234554321") {
+        isAdmin = true;
+      }
+      emit(SuccLoginUser(
+        Uid: value.user!.uid,
+        isAdmin: isAdmin!,
+      ));
     }).catchError((onError) {
       emit(eroorLoginUser(eroor: onError.toString()));
     });

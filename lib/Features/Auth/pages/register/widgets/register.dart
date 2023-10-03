@@ -1,8 +1,12 @@
 import 'package:ecommers/Features/Auth/pages/manger/login_cubit.dart';
 import 'package:ecommers/Features/Auth/pages/manger/login_states.dart';
 import 'package:ecommers/Features/Auth/pages/register/widgets/register_body.dart';
+import 'package:ecommers/Features/home/presentation/home.dart';
+import 'package:ecommers/core/constans/const.dart';
+import 'package:ecommers/core/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class Register extends StatelessWidget {
   const Register({super.key});
@@ -19,7 +23,14 @@ class Register extends StatelessWidget {
             body: SingleChildScrollView(child: RegisterBody()),
           );
         },
-        listener: (BuildContext context, Object? state) {},
+        listener: (BuildContext context, Object? state) {
+          if (state is SuccRegisterUser) {
+            UID = state.Uid;
+            Get.to(() => const HomeView());
+          } else if (state is eroorRegisterUser) {
+            showToast(msg: state.eroor, n: SelectToast.eroor);
+          }
+        },
       ),
     );
   }

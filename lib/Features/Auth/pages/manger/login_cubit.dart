@@ -29,6 +29,7 @@ class LoginCubit extends Cubit<LoginStaes> {
 
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
+        // ignore: body_might_complete_normally_catch_error
         .then((value) {
       print(value.user!.uid);
       createNewUserInFireStor(
@@ -37,27 +38,47 @@ class LoginCubit extends Cubit<LoginStaes> {
           password: password,
           phone: phone,
           Uid: value.user!.uid);
-      emit(SuccRegisterUser());
-    }).catchError((onError) {
-      print(onError);
-      emit(eroorRegisterUser());
+      emit(SuccRegisterUser(Uid: value.user!.uid));
+    }).onError((error, stackTrace) {
+      print("objext eroor $error ");
+      emit(eroorRegisterUser(eroor: error.toString()));
     });
   }
-}
 
-void createNewUserInFireStor(
-    {required String email,
-    required String name,
+  void createNewUserInFireStor(
+      {required String email,
+      required String name,
+      required String password,
+      required String phone,
+      required String Uid}) {
+    print("object");
+    UserModel? model = UserModel(
+        email: email, name: name, password: password, phone: phone, Uid: Uid);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(Uid)
+        .set(model.tOMap())
+        .then((value) {
+      // emit(SuccRegisterUser(Uid: uid));
+      print("Don In cloud");
+    }).onError((error, stackTrace) {
+      print(error);
+      emit(eroorRegisterUser(eroor: error.toString()));
+    });
+  }
+
+  void loginWithEandP({
+    required String email,
     required String password,
-    required String phone,
-    required String Uid}) {
-  UserModel? model = UserModel(
-      email: email, name: name, password: password, phone: phone, Uid: Uid);
-  FirebaseFirestore.instance
-      .collection('users')
-      .doc(Uid)
-      .set(model.tOMap())
-      .then((value) {
-    print("Don In cloud");
-  });
+  }) {
+    emit(LoadingLoginUser());
+    {}
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) {
+      emit(SuccLoginUser(Uid: value.user!.uid));
+    }).catchError((onError) {
+      emit(eroorLoginUser(eroor: onError.toString()));
+    });
+  }
 }

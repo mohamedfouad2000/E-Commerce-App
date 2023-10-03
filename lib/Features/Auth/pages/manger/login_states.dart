@@ -6,6 +6,24 @@ class ChangePassword extends LoginStaes {}
 
 class LoadingRegisterUser extends LoginStaes {}
 
-class SuccRegisterUser extends LoginStaes {}
+class SuccRegisterUser extends LoginStaes {
+  String Uid;
+  SuccRegisterUser({required this.Uid});
+}
 
-class eroorRegisterUser extends LoginStaes {}
+class eroorRegisterUser extends LoginStaes {
+  String? eroor;
+  eroorRegisterUser({required this.eroor});
+}
+
+class LoadingLoginUser extends LoginStaes {}
+
+class SuccLoginUser extends LoginStaes {
+  String Uid;
+  SuccLoginUser({required this.Uid});
+}
+
+class eroorLoginUser extends LoginStaes {
+  String? eroor;
+  eroorLoginUser({required this.eroor});
+}

@@ -2,6 +2,9 @@
 import 'package:ecommers/Features/Auth/pages/login/presentation/widgets/login_view_body.dart';
 import 'package:ecommers/Features/Auth/pages/manger/login_cubit.dart';
 import 'package:ecommers/Features/Auth/pages/manger/login_states.dart';
+import 'package:ecommers/Features/home/presentation/home.dart';
+import 'package:ecommers/core/constans/const.dart';
+import 'package:ecommers/core/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +24,14 @@ class Login extends StatelessWidget {
             // resizeToAvoidBottomInset: false,
           );
         },
-        listener: (BuildContext context, Object? state) {},
+        listener: (BuildContext context, Object? state) {
+          if (state is SuccLoginUser) {
+            UID = state.Uid;
+            Nav(context, const HomeView());
+          } else if (state is eroorLoginUser) {
+            showToast(msg: eroorLoginUser, n: SelectToast.eroor);
+          }
+        },
       ),
     );
   }

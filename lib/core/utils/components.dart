@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ecommers/core/utils/colors.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:ecommers/core/utils/size_config.dart';
 // import 'package:ecommers/core/utils/size_config.dart';
 
@@ -76,3 +77,46 @@ Widget customTextFormedFiled({
         // labelText: 'Password',
       ),
     );
+
+enum SelectToast { succ, eroor, warning }
+
+Color selectColor({required SelectToast n}) {
+  Color? color;
+  switch (n) {
+    case SelectToast.eroor:
+      color = Colors.red;
+      break;
+    case SelectToast.succ:
+      color = Colors.amber;
+      break;
+
+    case SelectToast.warning:
+      color = Colors.green;
+  }
+  return color;
+}
+
+void showToast({
+  required msg,
+  required SelectToast n,
+}) =>
+    Fluttertoast.showToast(
+        msg: "",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: selectColor(n: n),
+        textColor: Colors.white,
+        fontSize: 16.0);
+
+NavegatorPush(context, page) {
+  return Navigator.push(
+    context,
+    MaterialPageRoute(builder: (builder) => page),
+  );
+}
+
+Nav(context, page) {
+  return Navigator.pushAndRemoveUntil(
+      context, MaterialPageRoute(builder: (builder) => page), (route) => false);
+}

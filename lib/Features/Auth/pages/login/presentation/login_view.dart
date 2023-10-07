@@ -5,6 +5,7 @@ import 'package:ecommers/Features/Auth/pages/manger/login_states.dart';
 import 'package:ecommers/Features/admin/pages/adminhome/presentation/admin_home.dart';
 import 'package:ecommers/Features/home/presentation/home.dart';
 import 'package:ecommers/core/constans/const.dart';
+import 'package:ecommers/core/utils/cash_helper.dart';
 import 'package:ecommers/core/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,8 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var emailCont = TextEditingController();
+    var passCont = TextEditingController();
     return BlocProvider(
       create: (BuildContext context) {
         return LoginCubit();
@@ -21,13 +24,18 @@ class Login extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStaes>(
         builder: (BuildContext context, state) {
           return Scaffold(
-            body: SingleChildScrollView(child: LoginViewBody()),
+            body: SingleChildScrollView(
+                child: LoginViewBody(
+              emailCont: emailCont,
+              passCont: passCont,
+            )),
             // resizeToAvoidBottomInset: false,
           );
         },
         listener: (BuildContext context, Object? state) {
           if (state is SuccLoginUser) {
             UID = state.Uid;
+            CasheHelber.setDataShared(key: "Uid", value: state.Uid);
             if (state.isAdmin) {
               Nav(context, const AdminHome());
             } else {

@@ -1,3 +1,4 @@
+import 'package:ecommers/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommers/core/utils/colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -25,9 +26,16 @@ Widget customTextFiled(
         {required TextEditingController controller,
         required TextStyle textstyle,
         TextInputType type = TextInputType.name,
+        var ontapFun,
+        bool enabled = true,
         int maxLines = 1}) =>
     TextField(
+      enabled: enabled,
       controller: controller,
+      onTap: ontapFun,
+      onSubmitted: (v) {
+        ontapFun;
+      },
       maxLines: maxLines,
       keyboardType: type,
       style: textstyle,
@@ -120,3 +128,14 @@ Nav(context, page) {
   return Navigator.pushAndRemoveUntil(
       context, MaterialPageRoute(builder: (builder) => page), (route) => false);
 }
+
+Widget eroorFieds() => Container(
+      width: double.infinity,
+      height: 30,
+      color: Colors.red,
+      child: Text(
+        "Please Enter All Fileds ",
+        style: StylesData.titleInfo.copyWith(color: Colors.white),
+        textAlign: TextAlign.center,
+      ),
+    );

@@ -13,9 +13,10 @@ class LoginViewBody extends StatelessWidget {
   // LoginViewBody({super.key});
   var emailCont = TextEditingController();
   var passCont = TextEditingController();
+
   var formkey = GlobalKey<FormState>();
 
-  LoginViewBody({super.key});
+  LoginViewBody({super.key, required this.emailCont, required this.passCont});
 
   @override
   Widget build(BuildContext context) {

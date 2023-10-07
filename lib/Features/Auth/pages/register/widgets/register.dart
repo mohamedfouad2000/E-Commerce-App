@@ -13,6 +13,10 @@ class Register extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var emailCont = TextEditingController();
+    var passCont = TextEditingController();
+    var nameCont = TextEditingController();
+    var mobileCont = TextEditingController();
     return BlocProvider(
       create: (BuildContext context) {
         return LoginCubit();
@@ -20,7 +24,12 @@ class Register extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStaes>(
         builder: (BuildContext context, state) {
           return Scaffold(
-            body: SingleChildScrollView(child: RegisterBody()),
+            body: SingleChildScrollView(
+                child: RegisterBody(
+                    emailCont: emailCont,
+                    mobileCont: mobileCont,
+                    nameCont: nameCont,
+                    passCont: passCont)),
           );
         },
         listener: (BuildContext context, Object? state) {

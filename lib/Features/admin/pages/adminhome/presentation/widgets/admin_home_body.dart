@@ -1,4 +1,6 @@
+import 'package:ecommers/Features/Auth/pages/login/presentation/login_view.dart';
 import 'package:ecommers/Features/admin/pages/create%20prodect/presentation/create_product.dart';
+import 'package:ecommers/core/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,6 +30,12 @@ class AdminHomeBody extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: const Text("Show Order"),
+        ),
+        TextButton(
+          onPressed: () {
+            Nav(context, const Login());
+          },
+          child: const Text("Log Out "),
         ),
       ],
     );

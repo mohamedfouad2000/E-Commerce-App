@@ -17,7 +17,12 @@ class RegisterBody extends StatelessWidget {
   var mobileCont = TextEditingController();
   var formkey = GlobalKey<FormState>();
 
-  RegisterBody({super.key});
+  RegisterBody(
+      {super.key,
+      required this.emailCont,
+      required this.mobileCont,
+      required this.nameCont,
+      required this.passCont});
 
   @override
   Widget build(BuildContext context) {

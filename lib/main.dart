@@ -1,4 +1,4 @@
-import 'package:ecommers/Features/Auth/pages/login/presentation/login_view.dart';
+// import 'package:ecommers/Features/Auth/pages/login/presentation/login_view.dart';
 import 'package:ecommers/Features/splach/presentation/splach_view.dart';
 import 'package:ecommers/core/blocobserve.dart';
 import 'package:ecommers/core/utils/cash_helper.dart';
@@ -14,6 +14,7 @@ void main() async {
   await CasheHelber.init();
   await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
+
   // String? uid = CasheHelber.getDataShared(key: "Uid");
   // Widget? widget;
 

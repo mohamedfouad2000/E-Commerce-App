@@ -10,4 +10,7 @@ abstract class StylesData {
   static const logoStyle =
       TextStyle(fontSize: 50, color: Colors.white, fontWeight: FontWeight.bold);
   static const titleInfo = TextStyle(fontSize: 16, fontWeight: FontWeight.w400);
+
+  static const headerStyle = TextStyle(
+      fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white);
 }

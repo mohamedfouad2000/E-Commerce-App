@@ -1,4 +1,5 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:ecommers/core/utils/cash_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommers/Features/Boarding/presentation/widgets/custom_page_view.dart';
 import 'package:ecommers/Features/Auth/pages/login/presentation/login_view.dart';
@@ -61,6 +62,7 @@ class _BoardingViewBodyState extends State<BoardingViewBody> {
                   : true,
               child: TextButton(
                 onPressed: () {
+                  CasheHelber.putBool(key: "Boarding", value: true);
                   Get.to(() => const Login(),
                       transition: Transition.rightToLeft);
                 },
@@ -87,6 +89,7 @@ class _BoardingViewBodyState extends State<BoardingViewBody> {
                           duration: const Duration(microseconds: 8000),
                           curve: Curves.easeInCirc);
                     } else {
+                      CasheHelber.putBool(key: "Boarding", value: true);
                       Get.to(() => const Login(),
                           transition: Transition.rightToLeft);
                     }

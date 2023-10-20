@@ -1,3 +1,7 @@
+import 'package:ecommers/Features/Auth/pages/login/presentation/login_view.dart';
+import 'package:ecommers/Features/home/presentation/home.dart';
+import 'package:ecommers/core/constans/const.dart';
+import 'package:ecommers/core/utils/cash_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommers/Features/Boarding/presentation/boarding_view.dart';
 import 'package:ecommers/core/utils/styles.dart';
@@ -62,7 +66,33 @@ class _SplashviewbodyState extends State<Splashviewbody>
 }
 
 void goToNextView() {
-  Future.delayed(const Duration(seconds: 3), () {
-    Get.to(() => const BoardingView(), transition: Transition.fade);
+  Widget Start;
+  UID = CasheHelber.getDataShared(key: "Uid");
+  // bool boarding = false;
+  bool boarding = CasheHelber.getBool(key: "Boarding") ?? false;
+  // bool Boarding = CasheHelber.getBool(key:"Boarding");
+
+  if (boarding) {
+    print("1");
+
+    if (UID != null) {
+      print("2");
+      Start = const HomeView();
+      // Get.to(() => const HomeView(), transition: Transition.fade);
+    } else {
+      print("1");
+      Start = const Login();
+
+      // Get.to(() => const Login(), transition: Transition.fade);
+    }
+  } else {
+    print("1");
+    Start = const BoardingView();
+
+    // Get.to(() => const BoardingView(), transition: Transition.fade);
+  }
+  Future.delayed(const Duration(seconds: 5), () {
+    print("1");
+    Get.to(() => Start, transition: Transition.fade);
   });
 }

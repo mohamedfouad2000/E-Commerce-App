@@ -5,4 +5,8 @@ class AssetsData {
   static const logo = 'assets/images/logo.png';
   static const google = 'assets/images/search (7)@3x.png';
   static const facebook = 'assets/images/facebook (6)@3x.png';
+  static const homeIcon = 'assets/images/home.png';
+  static const userIcon = 'assets/images/user.png';
+  static const shoppingicon = 'assets/images/shopping.png';
+  static const heartIcon = 'assets/images/heart.png';
 }

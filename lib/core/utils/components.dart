@@ -68,8 +68,13 @@ Widget customTextFormedFiled({
         }
       },
       decoration: InputDecoration(
+        hintStyle: const TextStyle(color: Colors.grey),
+
         hintText: hintText,
-        prefixIcon: Icon(preicon),
+        prefixIcon: Icon(
+          preicon,
+          color: Colors.grey,
+        ),
 
         suffixIcon: sufficon != null
             ? InkWell(

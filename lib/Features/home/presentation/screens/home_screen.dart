@@ -1,8 +1,9 @@
 import 'package:ecommers/Features/home/presentation/manger/home_cubit.dart';
 import 'package:ecommers/Features/home/presentation/manger/home_states.dart';
 import 'package:ecommers/Features/home/presentation/widgets/custom_App_Bar.dart';
-import 'package:ecommers/core/utils/colors.dart';
-import 'package:ecommers/core/utils/styles.dart';
+import 'package:ecommers/Features/home/presentation/widgets/custom_category.dart';
+import 'package:ecommers/Features/home/presentation/widgets/mixed_fruit_pack.dart';
+import 'package:ecommers/Features/home/presentation/widgets/organic_fruits.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,47 +15,22 @@ class HomeScreen extends StatelessWidget {
 
     return BlocConsumer<HomeCubit, HomeStates>(
       builder: (BuildContext context, state) {
-        return Column(
-          children: [
-            CustomAppBar(searchController: SearchController),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: kHeaderColor),
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Vegetables",
-                        style: StylesData.headerStyle,
-                      ),
-                    )),
-                Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: kHeaderColor),
-                    child: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Fruits",
-                          style: StylesData.headerStyle,
-                        ))),
-                Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: kHeaderColor),
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Dry Fruits",
-                        style: StylesData.headerStyle,
-                      ),
-                    )),
-              ],
-            )
-          ],
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomAppBar(searchController: SearchController),
+              const CistomCategory(),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: OrganicFruits(),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: MixedFruitPackView(),
+              ),
+            ],
+          ),
         );
       },
       listener: (BuildContext context, Object? state) {},

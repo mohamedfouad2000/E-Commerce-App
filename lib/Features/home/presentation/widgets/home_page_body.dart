@@ -25,33 +25,33 @@ class HomePageBody extends StatelessWidget {
                 Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: kHeaderColor),
+                        color: kHeaderColorSelected),
                     child: TextButton(
                       onPressed: () {},
                       child: const Text(
                         "Vegetables",
-                        style: StylesData.headerStyle,
+                        style: StylesData.headerStyleUnselect,
                       ),
                     )),
                 Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: kHeaderColor),
+                        color: kHeaderColorUnSelected),
                     child: TextButton(
                         onPressed: () {},
                         child: const Text(
                           "Fruits",
-                          style: StylesData.headerStyle,
+                          style: StylesData.headerStyleSelect,
                         ))),
                 Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: kHeaderColor),
+                        color: kHeaderColorUnSelected),
                     child: TextButton(
                       onPressed: () {},
                       child: const Text(
                         "Dry Fruits",
-                        style: StylesData.headerStyle,
+                        style: StylesData.headerStyleUnselect,
                       ),
                     )),
               ],

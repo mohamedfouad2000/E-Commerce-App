@@ -15,6 +15,13 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(ChangeIcon());
   }
 
+  int? SelectButton = 2;
+  void ChangeSelectButton({required int x}) {
+    print(x);
+    SelectButton = x;
+    emit(ChangeIcon());
+  }
+
   List<Widget> Screens = [
     const HomeScreen(),
     const ShoppingScreen(),
